@@ -29,7 +29,9 @@ export class InicioPage implements OnInit {
   disable = false;
   color: string = 'start';
   precio: number [] = [];
+  gasto: number [] = [];
   ganancia: number = 0;
+  perdida: number = 0;
 
   constructor(private navCtrl: NavController, private plt: Platform, private alertCtrl: AlertController) { }
 
@@ -53,7 +55,7 @@ export class InicioPage implements OnInit {
       this.disable = false;
       this.pause();
       this.stop();
-      this.presentAlert();
+      this.agregarIngreso();
     }
   }
 
@@ -107,7 +109,7 @@ export class InicioPage implements OnInit {
     }
   }
 
-  async presentAlert() {
+  async agregarIngreso() {
     const alert = await this.alertCtrl.create({
       header: 'Fin de recorrido',
       message: `<br>Ingrese el costo del viaje<br><br>Duracion: ${this.min}:${this.seg}:${this.cen}`,
@@ -142,12 +144,54 @@ export class InicioPage implements OnInit {
     this.sumaIngresos();
   }
 
+  async agregarEgrego(){
+    const alert = await this.alertCtrl.create({
+      header: 'Añadir un gasto',
+      message: '<br>Ingrese la cantidad de dinero que se gastó',
+      inputs: [{
+        name: 'gasto',
+        type: 'number',
+        placeholder: '$'
+      }],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Operacion cancelada');
+          }
+        }, {
+          text: 'Guardar',
+          handler: () => {
+            console.log('Gasto guardado');
+          }
+        }
+      ],
+      backdropDismiss: false,
+      mode: 'ios'
+    });
+    await alert.present();
+    let result = await alert.onDidDismiss();
+    this.gasto.push(Number(result.data.values.gasto));
+    console.log(this.gasto);
+    this.sumaEgresos();
+  }
+
   sumaIngresos(){
     this.ganancia = 0;
     for(let i of this.precio){
       this.ganancia+=i;
     }
     console.log(this.ganancia);
+  }
+
+  sumaEgresos(){
+    this.perdida = 0;
+    for(let i of this.gasto){
+      this.perdida+=i;
+    }
+    console.log(this.perdida);
   }
 
 }
