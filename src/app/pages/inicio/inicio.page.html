@@ -1,0 +1,40 @@
+<ion-content class="ion-padding">
+
+  <ion-text color="medium" class="ion-text-center">
+    <h3 style="color: white;">Bienvenido</h3>
+    <h3>{{mensaje}}</h3>
+  </ion-text>
+
+  <div class="boton">
+    <ion-button (click)="status()"
+                expand="block"
+                color="{{color}}"
+                fill="outline" 
+                style="width: auto; height: auto;">
+      <img src="assets/icon/taxi.svg" style="width: 220px; height: 220px;">
+    </ion-button>
+  </div>
+
+  <ion-text *ngIf="estado === true" class="ion-text-center" color="medium">
+    <h3>Tiempo de recorrido</h3>
+    <h3>{{_minutos}} : {{_segundos}} : {{_centesimas}}</h3>
+  </ion-text>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <h4 class="ion-text-center"> Ganancias de hoy: ${{ganancia}}</h4>
+    <div style="float: left; width: 80%;">
+      <ion-button expand="block" shape="round" color="primary" disabled="{{disable}}">
+        Añadir gasto
+      </ion-button>
+    </div>
+    <div style="float: left; width: 20%;">
+      <ion-button expand="block" shape="round" color="warning" disabled="{{disable}}">
+        <ion-icon name="analytics-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>
+

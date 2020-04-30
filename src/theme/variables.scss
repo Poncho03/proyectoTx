@@ -74,6 +74,39 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** start **/
+  --ion-color-start: #16bd00;
+  --ion-color-start-rgb: 22,189,0;
+  --ion-color-start-contrast: #ffffff;
+  --ion-color-start-contrast-rgb: 255,255,255;
+  --ion-color-start-shade: #13a600;
+  --ion-color-start-tint: #2dc41a;
+
+  /** progress **/
+  --ion-color-progress: #e0a500;
+  --ion-color-progress-rgb: 224,165,0;
+  --ion-color-progress-contrast: #000000;
+  --ion-color-progress-contrast-rgb: 0,0,0;
+  --ion-color-progress-shade: #c59100;
+  --ion-color-progress-tint: #e3ae1a;
+}
+
+.ion-color-start{
+  --ion-color-base: var(--ion-color-start) !important;
+  --ion-color-base-rgb: var(--ion-color-start-rgb) !important;
+  --ion-color-contrast: var(--ion-color-start-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-start-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-start-shade) !important;
+  --ion-color-tint: var(--ion-color-start-tint) !important;
+}
+.ion-color-progress{
+  --ion-color-base: var(--ion-color-progress) !important;
+  --ion-color-base-rgb: var(--ion-color-progress-rgb) !important;
+  --ion-color-contrast: var(--ion-color-progress-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-progress-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-progress-shade) !important;
+  --ion-color-tint: var(--ion-color-progress-tint) !important;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -124,6 +157,20 @@
     --ion-color-danger-contrast-rgb: 255,255,255;
     --ion-color-danger-shade: #e04055;
     --ion-color-danger-tint: #ff5b71;
+
+    --ion-color-start: #16bd00;
+    --ion-color-start-rgb: 22,189,0;
+    --ion-color-start-contrast: #ffffff;
+    --ion-color-start-contrast-rgb: 255,255,255;
+    --ion-color-start-shade: #13a600;
+    --ion-color-start-tint: #2dc41a;
+
+    --ion-color-progress: #e0a500;
+    --ion-color-progress-rgb: 224,165,0;
+    --ion-color-progress-contrast: #000000;
+    --ion-color-progress-contrast-rgb: 0,0,0;
+    --ion-color-progress-shade: #c59100;
+    --ion-color-progress-tint: #e3ae1a;
 
     --ion-color-dark: #f4f5f8;
     --ion-color-dark-rgb: 244,245,248;
