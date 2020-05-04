@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavController, Platform, AlertController } from '@ionic/angular';
 
 @Component({
@@ -30,7 +31,10 @@ export class InicioPage implements OnInit {
   ganancia: number = 0;
   perdida: number = 0;
 
-  constructor(private navCtrl: NavController, private plt: Platform, private alertCtrl: AlertController) { }
+  constructor(private navCtrl: NavController,
+    private plt: Platform,
+    private alertCtrl: AlertController,
+    private router: Router) { }
 
   ngOnInit() { }
 
@@ -135,7 +139,8 @@ export class InicioPage implements OnInit {
       let dataIngreso = {
         tipo: 'Ingreso',
         tiempo: this.time,
-        money: result.data.values.costo
+        money: result.data.values.costo,
+        icon: 'arrow-up-circle'
       }
       this.precio.push(dataIngreso);
       console.log(this.precio);
@@ -178,11 +183,20 @@ export class InicioPage implements OnInit {
       let dataIngreso = {
         tipo: 'Engreso',
         tiempo: tiempoRegistro,
-        money: result.data.values.gasto
+        money: result.data.values.gasto,
+        icon: 'arrow-down-circle'
       }
       this.precio.push(dataIngreso);
       console.log(this.precio);
     }
+  }
+
+  Registros(){
+    this.router.navigate(['/registros'],{
+      queryParams: {
+        value: JSON.stringify(this.precio)
+      }
+    })
   }
 
 }
@@ -191,4 +205,5 @@ interface Datos {
   tipo: String;
   tiempo: String;
   money: number;
+  icon: string;
 }

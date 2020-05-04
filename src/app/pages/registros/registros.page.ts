@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-registros',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrosPage implements OnInit {
 
-  constructor() { }
+  data: any[] = [];
+
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.queryParams.subscribe( (d) => {
+      this.data = JSON.parse(d.value);
+      console.log(this.data);
+    } )
+  }
 
   ngOnInit() {
   }

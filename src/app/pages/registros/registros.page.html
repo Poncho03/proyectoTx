@@ -20,4 +20,19 @@
 
 <ion-content>
 
+  <ion-slide *ngIf="data.length === 0">
+    <ion-text color="medium">
+      <ion-icon name="car-outline" style="font-size: 80px;"></ion-icon>
+      <h3>No hay registros <br> Comience a rodar!</h3>
+    </ion-text>
+  </ion-slide>
+
+  <ion-list *ngIf="data.length > 0">
+    <ion-item *ngFor="let item of data">
+      <ion-icon slot="start" name="{{item.icon}}"></ion-icon>
+      <ion-label>$ {{item.money}}</ion-label>
+      <ion-label class="ion-text-right">{{item.tiempo}}</ion-label>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
