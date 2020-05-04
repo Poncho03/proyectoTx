@@ -12,4 +12,8 @@ export class RegistrosPage implements OnInit {
   ngOnInit() {
   }
 
+  segmentChanged(event){
+    console.log(event.detail.value);
+  }
+
 }

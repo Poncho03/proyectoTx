@@ -1,11 +1,22 @@
-<ion-header>
+<ion-header no-border translucent>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button text="" defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title class="ion-text-center">Registros</ion-title>
+    <ion-title class="ion-text-capitalize"> registros </ion-title>
   </ion-toolbar>
 </ion-header>
+
+<ion-toolbar>
+  <ion-segment (ionChange)="segmentChanged($event)" value="ingresos">
+    <ion-segment-button value="ingresos">
+      <ion-label>Ganancias</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="egresos">
+      <ion-label>Gastos</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar>
 
 <ion-content>
 

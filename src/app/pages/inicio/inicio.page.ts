@@ -19,24 +19,20 @@ export class InicioPage implements OnInit {
   isRun = false;
   refreshColor = 'light';
   //Variables que guardan el tiempo
-  min: string = '00';
-  seg: string = '00';
-  cen: string = '00';
+  time: string = '';
 
   //Variables de la interfaz
   mensaje: string = 'Empezar viaje';
   estado = false;
   disable = false;
   color: string = 'start';
-  precio: number [] = [];
-  gasto: number [] = [];
+  precio: Datos [] = [];
   ganancia: number = 0;
   perdida: number = 0;
 
   constructor(private navCtrl: NavController, private plt: Platform, private alertCtrl: AlertController) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   status(){
     if(this.estado === false){
@@ -90,11 +86,7 @@ export class InicioPage implements OnInit {
   stop() {
     if (!this.isRun) {
       clearInterval(this.contador);
-      this.min = this._minutos;
-      this.seg = this._segundos;
-      this.cen = this._centesimas;
-
-      console.log('Duracion: ' + this.min +':'+ this.seg +':'+ this.cen);
+      this.time = this._minutos +' : '+ this._segundos +' : '+ this._centesimas;
 
       this.minutos = 0;
       this.segundos = 0;
@@ -112,7 +104,7 @@ export class InicioPage implements OnInit {
   async agregarIngreso() {
     const alert = await this.alertCtrl.create({
       header: 'Fin de recorrido',
-      message: `<br>Ingrese el costo del viaje<br><br>Duracion: ${this.min}:${this.seg}:${this.cen}`,
+      message: `<br>Ingrese el costo del viaje<br><br>Duracion: ${this.time}`,
       inputs: [{
         name: 'costo',
         type: 'number',
@@ -139,12 +131,21 @@ export class InicioPage implements OnInit {
 
     await alert.present();
     let result = await alert.onDidDismiss();
-    this.precio.push(Number(result.data.values.costo));
-    console.log(this.precio);
-    this.sumaIngresos();
+    if (result.data.values.costo != ""){
+      let dataIngreso = {
+        tipo: 'Ingreso',
+        tiempo: this.time,
+        money: result.data.values.costo
+      }
+      this.precio.push(dataIngreso);
+      console.log(this.precio);
+    }
   }
 
   async agregarEgrego(){
+    let hora = new Date().getHours().toString();
+    let min = new Date().getMinutes().toString();
+    let tiempoRegistro = hora +' : '+ min;
     const alert = await this.alertCtrl.create({
       header: 'Añadir un gasto',
       message: '<br>Ingrese la cantidad de dinero que se gastó',
@@ -173,25 +174,21 @@ export class InicioPage implements OnInit {
     });
     await alert.present();
     let result = await alert.onDidDismiss();
-    this.gasto.push(Number(result.data.values.gasto));
-    console.log(this.gasto);
-    this.sumaEgresos();
-  }
-
-  sumaIngresos(){
-    this.ganancia = 0;
-    for(let i of this.precio){
-      this.ganancia+=i;
+    if (result.data.values.gasto != "") {
+      let dataIngreso = {
+        tipo: 'Engreso',
+        tiempo: tiempoRegistro,
+        money: result.data.values.gasto
+      }
+      this.precio.push(dataIngreso);
+      console.log(this.precio);
     }
-    console.log(this.ganancia);
   }
 
-  sumaEgresos(){
-    this.perdida = 0;
-    for(let i of this.gasto){
-      this.perdida+=i;
-    }
-    console.log(this.perdida);
-  }
+}
 
+interface Datos {
+  tipo: String;
+  tiempo: String;
+  money: number;
 }
