@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 export class RegistrosPage implements OnInit {
 
   data: any[] = [];
+  tipo: string = '';
+  neta: number = 0;
 
   constructor(private activatedRoute: ActivatedRoute) {
     this.activatedRoute.queryParams.subscribe( (d) => {
@@ -18,10 +20,12 @@ export class RegistrosPage implements OnInit {
   }
 
   ngOnInit() {
+    this.tipo = 'ingresos';
   }
 
   segmentChanged(event){
-    console.log(event.detail.value);
+    this.tipo = event.detail.value;
+    console.log(this.tipo);
   }
 
 }

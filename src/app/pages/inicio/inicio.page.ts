@@ -137,7 +137,7 @@ export class InicioPage implements OnInit {
     let result = await alert.onDidDismiss();
     if (result.data.values.costo != ""){
       let dataIngreso = {
-        tipo: 'Ingreso',
+        tipo: 'ingresos',
         tiempo: this.time,
         money: result.data.values.costo,
         icon: 'arrow-up-circle'
@@ -150,7 +150,7 @@ export class InicioPage implements OnInit {
   async agregarEgrego(){
     let hora = new Date().getHours().toString();
     let min = new Date().getMinutes().toString();
-    let tiempoRegistro = hora +' : '+ min;
+    let tiempoRegistro = hora +' : '+ min +' hrs.';
     const alert = await this.alertCtrl.create({
       header: 'Añadir un gasto',
       message: '<br>Ingrese la cantidad de dinero que se gastó',
@@ -181,7 +181,7 @@ export class InicioPage implements OnInit {
     let result = await alert.onDidDismiss();
     if (result.data.values.gasto != "") {
       let dataIngreso = {
-        tipo: 'Engreso',
+        tipo: 'egresos',
         tiempo: tiempoRegistro,
         money: result.data.values.gasto,
         icon: 'arrow-down-circle'
@@ -202,8 +202,8 @@ export class InicioPage implements OnInit {
 }
 
 interface Datos {
-  tipo: String;
-  tiempo: String;
+  tipo: string;
+  tiempo: string;
   money: number;
   icon: string;
 }

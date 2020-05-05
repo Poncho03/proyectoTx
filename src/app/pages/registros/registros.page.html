@@ -28,7 +28,7 @@
   </ion-slide>
 
   <ion-list *ngIf="data.length > 0">
-    <ion-item *ngFor="let item of data">
+    <ion-item *ngFor="let item of data | filtro: tipo: 'tipo'">
       <ion-icon slot="start" name="{{item.icon}}"></ion-icon>
       <ion-label>$ {{item.money}}</ion-label>
       <ion-label class="ion-text-right">{{item.tiempo}}</ion-label>
@@ -36,3 +36,9 @@
   </ion-list>
 
 </ion-content>
+
+<ion-footer class="ion-padding ion-no-border">
+  <ion-toolbar>
+    <h3 class="ion-text-center">Ganancia neta: $ {{neta}}</h3>
+  </ion-toolbar>
+</ion-footer>
