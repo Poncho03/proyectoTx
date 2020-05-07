@@ -29,6 +29,7 @@ export class InicioPage implements OnInit {
   color: string = 'start';
   precio: Datos [] = [];
   dataJSON: string;
+  ubicacion: any;
 
   constructor(private navCtrl: NavController,
     private plt: Platform,
@@ -211,15 +212,18 @@ export class InicioPage implements OnInit {
     const alert = await this.alertCtrl.create({
       header: 'Operación cancelada',
       message: '<h4 class="ion-text-center">No se agregó un valor</h4',
-      buttons: ['Ok']
+      buttons: ['Ok'],
+      mode: 'ios'
     });
+    
     await alert.present();
   }
   async messageSave() {
     const alert = await this.alertCtrl.create({
       header: 'Buen trabajo, ¡siga así!',
       message: '<h4 class="ion-text-center">Se guardó la cantidad</h4',
-      buttons: ['Ok']
+      buttons: ['Ok'],
+      mode: 'ios'
     });
     await alert.present();
   }

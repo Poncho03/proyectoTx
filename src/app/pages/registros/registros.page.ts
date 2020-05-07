@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavController, AlertController } from '@ionic/angular';
+import { NavController, AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registros',
@@ -18,7 +18,8 @@ export class RegistrosPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
       private navCtrl: NavController,
       private router: Router,
-      private alertCtrl: AlertController) {
+      private alertCtrl: AlertController,
+      private toastCtrl: ToastController) {
     this.activatedRoute.queryParams.subscribe( (d) => {
       this.data = JSON.parse(d.value);
       console.log(this.data);
@@ -78,7 +79,9 @@ export class RegistrosPage implements OnInit {
             this.borrarData();
           }
         }
-      ]
+      ],
+      backdropDismiss: false,
+      mode: 'ios'
     });
 
     await alert.present();
@@ -91,6 +94,17 @@ export class RegistrosPage implements OnInit {
     this.boton = true;
     this.neta = 0;
     this.color='';
+    this.presentToast()
+  }
+
+  async presentToast() {
+    const toast = await this.toastCtrl.create({
+      message: 'Registros eliminados',
+      duration: 2000,
+      color: 'medium',
+      mode: 'ios'
+    });
+    toast.present();
   }
   
 }
