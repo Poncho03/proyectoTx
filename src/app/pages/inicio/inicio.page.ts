@@ -28,15 +28,19 @@ export class InicioPage implements OnInit {
   disable = false;
   color: string = 'start';
   precio: Datos [] = [];
-  ganancia: number = 0;
-  perdida: number = 0;
+  dataJSON: string;
 
   constructor(private navCtrl: NavController,
     private plt: Platform,
     private alertCtrl: AlertController,
     private router: Router) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    if (localStorage.getItem("data") != null) {
+       let dataArray = JSON.parse(localStorage.getItem("data"));
+       this.precio = dataArray;
+    }
+  }
 
   status(){
     if(this.estado === false){
@@ -108,7 +112,7 @@ export class InicioPage implements OnInit {
   async agregarIngreso() {
     const alert = await this.alertCtrl.create({
       header: 'Fin de recorrido',
-      message: `<br>Ingrese el costo del viaje<br><br>Duracion: ${this.time}`,
+      message: `<br><h4 class="ion-text-center">Ingrese el costo del viaje<br><br>Duracion: ${this.time}</h4>`,
       inputs: [{
         name: 'costo',
         type: 'number',
@@ -144,6 +148,12 @@ export class InicioPage implements OnInit {
       }
       this.precio.push(dataIngreso);
       console.log(this.precio);
+      this.messageSave();
+      this.dataJSON = JSON.stringify(this.precio);
+      localStorage.setItem("data", this.dataJSON);
+    }
+    else{
+      this.messageNull();
     }
   }
 
@@ -153,7 +163,7 @@ export class InicioPage implements OnInit {
     let tiempoRegistro = hora +' : '+ min +' hrs.';
     const alert = await this.alertCtrl.create({
       header: 'Añadir un gasto',
-      message: '<br>Ingrese la cantidad de dinero que se gastó',
+      message: '<br><h4 class="ion-text-center">Ingrese la cantidad de dinero que se gastó</h4>',
       inputs: [{
         name: 'gasto',
         type: 'number',
@@ -188,15 +198,48 @@ export class InicioPage implements OnInit {
       }
       this.precio.push(dataIngreso);
       console.log(this.precio);
+      this.messageSave();
+      this.dataJSON = JSON.stringify(this.precio);
+      localStorage.setItem("data", this.dataJSON);
+    }
+    else{
+      this.messageNull();
     }
   }
 
+  async messageNull() {
+    const alert = await this.alertCtrl.create({
+      header: 'Operación cancelada',
+      message: '<h4 class="ion-text-center">No se agregó un valor</h4',
+      buttons: ['Ok']
+    });
+    await alert.present();
+  }
+  async messageSave() {
+    const alert = await this.alertCtrl.create({
+      header: 'Buen trabajo, ¡siga así!',
+      message: '<h4 class="ion-text-center">Se guardó la cantidad</h4',
+      buttons: ['Ok']
+    });
+    await alert.present();
+  }
+
   Registros(){
-    this.router.navigate(['/registros'],{
-      queryParams: {
-        value: JSON.stringify(this.precio)
-      }
-    })
+    if (!localStorage.getItem("data")) {
+      this.precio = [];
+      this.router.navigate(['/registros'],{
+        queryParams: {
+          value: JSON.stringify(this.precio)
+        }
+      });
+    }
+    else{
+      this.router.navigate(['/registros'],{
+        queryParams: {
+          value: JSON.stringify(this.precio)
+        }
+      });
+    }
   }
 
 }

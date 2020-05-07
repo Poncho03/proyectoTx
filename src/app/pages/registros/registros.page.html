@@ -4,6 +4,11 @@
       <ion-back-button text="" defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title class="ion-text-capitalize"> registros </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentAlertConfirm()" disabled="{{boton}}">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
