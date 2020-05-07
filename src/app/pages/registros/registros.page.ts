@@ -13,6 +13,7 @@ export class RegistrosPage implements OnInit {
   tipo: string = '';
   neta: number = 0;
   boton: boolean = true;
+  color: string;
 
   constructor(private activatedRoute: ActivatedRoute,
       private navCtrl: NavController,
@@ -41,6 +42,15 @@ export class RegistrosPage implements OnInit {
         console.log(parseInt(this.data[i].money, 10));
         this.neta -= parseInt(this.data[i].money, 10);
       }
+    }
+    if (this.neta === 0) {
+      this.color='';
+    }
+    else if(this.neta > 0){
+      this.color='success';
+    }
+    else{
+      this.color='danger';
     }
   }
 
@@ -80,6 +90,7 @@ export class RegistrosPage implements OnInit {
     localStorage.clear();
     this.boton = true;
     this.neta = 0;
+    this.color='';
   }
   
 }

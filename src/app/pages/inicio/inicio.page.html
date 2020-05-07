@@ -1,8 +1,8 @@
 <ion-content class="ion-padding">
 
   <ion-text color="medium" class="ion-text-center">
-    <h3 style="color: white;">Bienvenido</h3>
-    <h2>{{mensaje}}</h2>
+    <h3 color="light">Bienvenido</h3>
+    <h2><strong>{{mensaje}}</strong></h2>
   </ion-text>
 
   <div class="boton">
@@ -10,12 +10,13 @@
                 expand="block"
                 color="{{color}}"
                 fill="outline" 
-                style="width: auto; height: 250px;">
+                style="width: auto; height: 250px;"
+                mode="md">
       <img src="assets/icon/taxi.svg" style="width: 220px; height: 220px;">
     </ion-button>
   </div>
 
-  <ion-text *ngIf="estado === true" class="ion-text-center" color="medium">
+  <ion-text *ngIf="estado === true" class="ion-text-center">
     <h3>Tiempo de recorrido</h3>
     <h1>{{_minutos}} : {{_segundos}} : {{_centesimas}}</h1>
   </ion-text>
