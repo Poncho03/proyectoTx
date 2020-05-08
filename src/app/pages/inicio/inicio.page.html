@@ -1,17 +1,19 @@
 <ion-content>
 
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button disabled="{{disable}}" routerLink="/ajustes">
+        <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-capitalize">Hola, {{nombre}}!</ion-title>
+
     <ion-buttons slot="end">
       <ion-chip mode="ios" color="medium">
         <ion-icon name="car-outline"></ion-icon>
-        <ion-label>29</ion-label>
+        <ion-label>{{unidad}}</ion-label>
       </ion-chip>
-    </ion-buttons>
-    <ion-title>Hola, Luis!</ion-title>
-    <ion-buttons slot="start">
-      <ion-button disabled="{{disable}}">
-        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
-      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 
@@ -41,7 +43,7 @@
 <ion-footer class="ion-no-border">
   <ion-toolbar>
     <div style="float: left; width: 80%;">
-      <ion-button expand="block" shape="round" color="gasto" disabled="{{disable}}" (click)="agregarEgrego()">
+      <ion-button expand="block" shape="round" color="gasto" disabled="{{disable}}" (click)="agregarEgreso()">
         Añadir gasto
       </ion-button>
     </div>

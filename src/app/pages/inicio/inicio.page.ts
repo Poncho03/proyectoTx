@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController, Platform, AlertController } from '@ionic/angular';
+import { NavController, Platform, AlertController, PopoverController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-inicio',
@@ -29,17 +29,30 @@ export class InicioPage implements OnInit {
   color: string = 'start';
   precio: Datos [] = [];
   dataJSON: string;
-  ubicacion: any;
+
+  //Variables de informacion del usuario
+  nombre: string;
+  unidad: string;
 
   constructor(private navCtrl: NavController,
     private plt: Platform,
     private alertCtrl: AlertController,
-    private router: Router) { }
+    private router: Router,
+    private popoverCtrl: PopoverController,
+    private toastCtrl: ToastController) { }
 
   ngOnInit() {
     if (localStorage.getItem("data") != null) {
        let dataArray = JSON.parse(localStorage.getItem("data"));
        this.precio = dataArray;
+    }
+
+    if (!sessionStorage.getItem("nombre") && !sessionStorage.getItem("unidad")) {
+      this.userData();
+    }
+    else{
+      this.nombre = JSON.parse(sessionStorage.getItem("nombre"));
+      this.unidad = JSON.parse(sessionStorage.getItem("unidad"));
     }
   }
 
@@ -158,7 +171,7 @@ export class InicioPage implements OnInit {
     }
   }
 
-  async agregarEgrego(){
+  async agregarEgreso(){
     let hora = new Date().getHours().toString();
     let min = new Date().getMinutes().toString();
     let tiempoRegistro = hora +' : '+ min +' hrs.';
@@ -208,6 +221,52 @@ export class InicioPage implements OnInit {
     }
   }
 
+  async userData() {
+    const alert = await this.alertCtrl.create({
+      header: 'Bienvenido a Tax',
+      message: '<h4>Por favor, llene los campos para personalizar su servicio</h4>',
+      inputs: [
+        {
+          name: 'nombre',
+          type: 'text',
+          placeholder: 'Nombre'
+        },
+        {
+          name: 'unidad',
+          type: 'number',
+          placeholder: 'Número de su unidad'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Ok',
+          cssClass: 'primary',
+          handler: () => {
+            console.log('Datos añadidos');
+          }
+        }
+      ],
+      mode: 'ios',
+      backdropDismiss: false
+      
+    });
+    await alert.present();
+    let result = await alert.onDidDismiss();
+    if(result.data.values.nombre != "" && result.data.values.unidad != ""){
+      this.nombre = result.data.values.nombre;
+      this.unidad = result.data.values.unidad;
+      let nombreJSON = JSON.stringify(result.data.values.nombre);
+      let unidadJSON = JSON.stringify(result.data.values.unidad);
+      sessionStorage.setItem("nombre", nombreJSON);
+      sessionStorage.setItem("unidad", unidadJSON);
+      this.messageDataSuccess();
+    }
+    else{
+      this.messageDataNull();
+      this.userData();
+    }
+  }
+
   async messageNull() {
     const alert = await this.alertCtrl.create({
       header: 'Operación cancelada',
@@ -227,6 +286,23 @@ export class InicioPage implements OnInit {
     });
     await alert.present();
   }
+  async messageDataSuccess() {
+    const alert = await this.alertCtrl.create({
+      header: 'Datos guardados',
+      message: `<h4 class=\\"ion-text-center ion-text-capitalize\\">Bienvenido ${this.nombre}</h4>`,
+      mode: 'ios'
+    });
+    await alert.present();
+  }
+  async messageDataNull() {
+    const toast = await this.toastCtrl.create({
+      message: 'Es necesario agregar los datos para continuar',
+      duration: 3000,
+      color: 'dark',
+      mode: 'ios'
+    });
+    toast.present();
+  }
 
   Registros(){
     if (!localStorage.getItem("data")) {
@@ -245,6 +321,7 @@ export class InicioPage implements OnInit {
       });
     }
   }
+
 
 }
 

@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: 'registros',
     loadChildren: () => import('./pages/registros/registros.module').then( m => m.RegistrosPageModule)
+  },
+  {
+    path: 'ajustes',
+    loadChildren: () => import('./pages/ajustes/ajustes.module').then( m => m.AjustesPageModule)
   }
 ];
 
