@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController, Platform, AlertController, PopoverController, ToastController } from '@ionic/angular';
+import { NavController, Platform, AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-inicio',
@@ -38,7 +38,6 @@ export class InicioPage implements OnInit {
     private plt: Platform,
     private alertCtrl: AlertController,
     private router: Router,
-    private popoverCtrl: PopoverController,
     private toastCtrl: ToastController) { }
 
   ngOnInit() {
@@ -47,12 +46,12 @@ export class InicioPage implements OnInit {
        this.precio = dataArray;
     }
 
-    if (!sessionStorage.getItem("nombre") && !sessionStorage.getItem("unidad")) {
+    if (!localStorage.getItem("nombre") && !localStorage.getItem("unidad")) {
       this.userData();
     }
     else{
-      this.nombre = JSON.parse(sessionStorage.getItem("nombre"));
-      this.unidad = JSON.parse(sessionStorage.getItem("unidad"));
+      this.nombre = JSON.parse(localStorage.getItem("nombre"));
+      this.unidad = JSON.parse(localStorage.getItem("unidad"));
     }
   }
 
@@ -257,8 +256,8 @@ export class InicioPage implements OnInit {
       this.unidad = result.data.values.unidad;
       let nombreJSON = JSON.stringify(result.data.values.nombre);
       let unidadJSON = JSON.stringify(result.data.values.unidad);
-      sessionStorage.setItem("nombre", nombreJSON);
-      sessionStorage.setItem("unidad", unidadJSON);
+      localStorage.setItem("nombre", nombreJSON);
+      localStorage.setItem("unidad", unidadJSON);
       this.messageDataSuccess();
     }
     else{

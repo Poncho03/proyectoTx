@@ -90,7 +90,7 @@ export class RegistrosPage implements OnInit {
   borrarData(){
     this.data = [];
     console.log(this.data);
-    localStorage.clear();
+    localStorage.removeItem("data");
     this.boton = true;
     this.neta = 0;
     this.color='';
