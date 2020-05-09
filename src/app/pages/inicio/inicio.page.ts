@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController, Platform, AlertController, ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-inicio',
@@ -34,9 +34,7 @@ export class InicioPage implements OnInit {
   nombre: string;
   unidad: string;
 
-  constructor(private navCtrl: NavController,
-    private plt: Platform,
-    private alertCtrl: AlertController,
+  constructor(private alertCtrl: AlertController,
     private router: Router,
     private toastCtrl: ToastController) { }
 
@@ -44,9 +42,9 @@ export class InicioPage implements OnInit {
     if (localStorage.getItem("data") != null) {
        let dataArray = JSON.parse(localStorage.getItem("data"));
        this.precio = dataArray;
-    }
+    };
 
-    if (!localStorage.getItem("nombre") && !localStorage.getItem("unidad")) {
+    if (!localStorage.getItem("nombre") || !localStorage.getItem("unidad")) {
       this.userData();
     }
     else{
@@ -224,22 +222,12 @@ export class InicioPage implements OnInit {
     const alert = await this.alertCtrl.create({
       header: 'Bienvenido a Tax',
       message: '<h4>Por favor, llene los campos para personalizar su servicio</h4>',
-      inputs: [
-        {
-          name: 'nombre',
-          type: 'text',
-          placeholder: 'Nombre'
-        },
-        {
-          name: 'unidad',
-          type: 'number',
-          placeholder: 'Número de su unidad'
-        },
+      inputs: [ 
+        { name: 'nombre', type: 'text', placeholder: 'Nombre' },
+        { name: 'unidad', type: 'number', placeholder: 'Número de su unidad' },
       ],
       buttons: [
-        {
-          text: 'Ok',
-          cssClass: 'primary',
+        { text: 'Ok', cssClass: 'primary',
           handler: () => {
             console.log('Datos añadidos');
           }
@@ -252,12 +240,10 @@ export class InicioPage implements OnInit {
     await alert.present();
     let result = await alert.onDidDismiss();
     if(result.data.values.nombre != "" && result.data.values.unidad != ""){
-      this.nombre = result.data.values.nombre;
-      this.unidad = result.data.values.unidad;
-      let nombreJSON = JSON.stringify(result.data.values.nombre);
-      let unidadJSON = JSON.stringify(result.data.values.unidad);
-      localStorage.setItem("nombre", nombreJSON);
-      localStorage.setItem("unidad", unidadJSON);
+      localStorage.setItem("nombre", JSON.stringify(result.data.values.nombre));
+      localStorage.setItem("unidad", JSON.stringify(result.data.values.unidad));
+      this.nombre = JSON.parse(localStorage.getItem("nombre"));
+      this.unidad = JSON.parse(localStorage.getItem("unidad"));
       this.messageDataSuccess();
     }
     else{
@@ -320,7 +306,6 @@ export class InicioPage implements OnInit {
       });
     }
   }
-
 
 }
 

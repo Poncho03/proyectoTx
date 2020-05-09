@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NavController, AlertController, ToastController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registros',
@@ -16,8 +16,6 @@ export class RegistrosPage implements OnInit {
   color: string;
 
   constructor(private activatedRoute: ActivatedRoute,
-      private navCtrl: NavController,
-      private router: Router,
       private alertCtrl: AlertController,
       private toastCtrl: ToastController) {
     this.activatedRoute.queryParams.subscribe( (d) => {

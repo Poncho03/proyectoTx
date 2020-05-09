@@ -9,16 +9,15 @@
 
 <ion-content>
 
-  <ion-card mode="ios">
-    <ion-item lines="full" mode="md">
-      <ion-icon slot="start" name="person-circle-outline" style="font-size: 80px;"></ion-icon>
-      <ion-text>
-        <h2 class="ion-text-capitalize">{{nombre}}</h2>
-        <ion-text color="medium">
-          <h5>Unidad: {{unidad}}</h5>
-        </ion-text>
-      </ion-text>
-    </ion-item>
+  <ion-card>
+    <ion-card-header class="ion-text-center">
+      <ion-avatar class="userImage"> <img src="assets/avatarlogo.jpg" /> </ion-avatar>
+      <ion-card-title class="ion-text-center ion-text-capitalize"><h2>{{nombre}}</h2></ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ion-text-center">
+      <h5>Unidad: {{unidad}}</h5>
+      <h5>Orizaba, Ver.</h5>
+    </ion-card-content>
   </ion-card>
 
   <ion-list>

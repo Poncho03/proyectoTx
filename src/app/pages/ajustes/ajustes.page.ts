@@ -62,7 +62,7 @@ export class AjustesPage implements OnInit {
         {
           text: 'Cambiar',
           handler: () => {
-            console.log('Gasto guardado');
+            console.log('Nombre guardado');
           }
         }
       ],
@@ -93,7 +93,7 @@ export class AjustesPage implements OnInit {
         {
           text: 'Cambiar',
           handler: () => {
-            console.log('Gasto guardado');
+            console.log('Unidad guardada');
           }
         }
       ],
@@ -111,7 +111,7 @@ export class AjustesPage implements OnInit {
     }
   }
   estadisticas(){
-    console.log('Evento funciona');
+    console.log('Evento Estadisticas funciona');
   }
 
   async changeSuccess() {
