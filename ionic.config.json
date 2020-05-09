@@ -1,5 +1,7 @@
 {
   "name": "tax",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
