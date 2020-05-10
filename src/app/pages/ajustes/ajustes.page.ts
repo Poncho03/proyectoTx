@@ -35,6 +35,7 @@ export class AjustesPage implements OnInit {
               private toastCtrl: ToastController) { }
 
   ngOnInit() {
+    console.log('ingreso a la pantalla Ajustes');
   }
 
   onClick(item){
@@ -101,7 +102,7 @@ export class AjustesPage implements OnInit {
     });
     await alert.present();
     let result = await alert.onDidDismiss();
-    if (result.data.values.unity != '') {
+    if (result.data.values.unity != "") {
       localStorage.setItem("unidad", JSON.stringify(result.data.values.unity));
       this.unidad = JSON.parse(localStorage.getItem("unidad"));
       this.changeSuccess();

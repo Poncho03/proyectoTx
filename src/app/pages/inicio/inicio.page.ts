@@ -34,23 +34,14 @@ export class InicioPage implements OnInit {
   nombre: string;
   unidad: string;
 
-  constructor(private alertCtrl: AlertController,
-    private router: Router,
-    private toastCtrl: ToastController) { }
+  constructor( private alertCtrl: AlertController,
+              private router: Router,
+              private toastCtrl: ToastController) {}
 
   ngOnInit() {
-    if (localStorage.getItem("data") != null) {
-       let dataArray = JSON.parse(localStorage.getItem("data"));
-       this.precio = dataArray;
-    };
-
-    if (!localStorage.getItem("nombre") || !localStorage.getItem("unidad")) {
-      this.userData();
-    }
-    else{
-      this.nombre = JSON.parse(localStorage.getItem("nombre"));
-      this.unidad = JSON.parse(localStorage.getItem("unidad"));
-    }
+    console.log('Ingreso a la pantalla Inicio');
+    this.obtenerDatosUsuario();
+    this.obtenerDatosRegistro();
   }
 
   status(){
@@ -305,6 +296,22 @@ export class InicioPage implements OnInit {
         }
       });
     }
+  }
+
+  obtenerDatosUsuario(){
+    if (!localStorage.getItem("nombre") || !localStorage.getItem("unidad")) {
+      this.userData();
+    }
+    else{
+      this.nombre = JSON.parse(localStorage.getItem("nombre"));
+      this.unidad = JSON.parse(localStorage.getItem("unidad"));
+    }
+  }
+  obtenerDatosRegistro(){
+    if (localStorage.getItem("data") != null) {
+      let dataArray = JSON.parse(localStorage.getItem("data"));
+      this.precio = dataArray;
+   }
   }
 
 }
