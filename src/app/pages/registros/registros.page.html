@@ -1,5 +1,5 @@
 <ion-header no-border translucent>
-  <ion-toolbar>
+  <ion-toolbar color="data">
     <ion-buttons slot="start">
       <ion-back-button text="" defaultHref="/"></ion-back-button>
     </ion-buttons>
@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-toolbar>
-  <ion-segment (ionChange)="segmentChanged($event)" value="ingresos">
+  <ion-segment (ionChange)="segmentChanged($event)" value="ingresos" color="start">
     <ion-segment-button value="ingresos">
       <ion-label>Ganancias</ion-label>
     </ion-segment-button>

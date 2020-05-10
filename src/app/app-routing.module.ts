@@ -6,10 +6,7 @@ const routes: Routes = [
   { path: 'inicio', loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule) },
   { path: 'registros', loadChildren: () => import('./pages/registros/registros.module').then( m => m.RegistrosPageModule) },
   { path: 'ajustes', loadChildren: () => import('./pages/ajustes/ajustes.module').then( m => m.AjustesPageModule) },
-  {
-    path: 'tutorial',
-    loadChildren: () => import('./pages/tutorial/tutorial.module').then( m => m.TutorialPageModule)
-  }
+  { path: 'tutorial', loadChildren: () => import('./pages/tutorial/tutorial.module').then( m => m.TutorialPageModule) },
 ];
 
 @NgModule({

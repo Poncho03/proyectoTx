@@ -26,6 +26,12 @@ export class AjustesPage implements OnInit {
       icon: 'analytics',
       titulo: 'Estadísticas generales',
       subtitulo: 'Registro completo del uso de la aplicación'
+    },
+    {
+      id: '4',
+      icon: 'bug',
+      titulo: 'Contacta al desarrollador',
+      subtitulo: 'Dudas, fallos o comentarios'
     }
   ];
   nombre: string = JSON.parse(localStorage.getItem("nombre"));
@@ -46,6 +52,9 @@ export class AjustesPage implements OnInit {
       this.cambiarUnidad();
     }
     if (item.id === '3') {
+      this.estadisticas();
+    }
+    if (item.id === '4') {
       this.estadisticas();
     }
   }
@@ -113,6 +122,9 @@ export class AjustesPage implements OnInit {
   }
   estadisticas(){
     console.log('Evento Estadisticas funciona');
+  }
+  contacto(){
+    console.log('Evento Contacto funciona');
   }
 
   async changeSuccess() {

@@ -1,19 +1,13 @@
 <ion-content>
 
-  <ion-fab vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button color="medium" mode="ios" routerLink="/ajustes">
-      <ion-icon name="close"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-
   <ion-slides mode="ios" pager="ios" expand="full" style="height: 100%;">
 
-    <ion-slide >
+    <ion-slide>
       <ion-card style="height: 80%;">
         <ion-card-header>
           <ion-card>
             <ion-card-header class="ion-text-center">
-              <ion-avatar class="tutoImage"> <img src="assets/icon/favicon.png" /> </ion-avatar>
+              <ion-avatar class="startImage"> <img src="assets/icon/favicon.png" /> </ion-avatar>
               <ion-card-title class="ion-text-center"><h2>Bienvenido a Tax</h2></ion-card-title>
             </ion-card-header>
             <ion-card-content class="ion-text-center">
@@ -34,7 +28,7 @@
         <ion-card-header>
           <ion-card>
             <ion-card-header class="ion-text-center">
-              <ion-avatar class="tutoImage"> <img src="assets/icon/favicon.png" /> </ion-avatar>
+              <ion-avatar class="startImage"> <img src="assets/icon/favicon.png" /> </ion-avatar>
               <ion-card-title class="ion-text-center"><h2>Lleva un registro completo de tus viajes</h2></ion-card-title>
             </ion-card-header>
             <ion-card-content class="ion-text-center">
@@ -67,7 +61,7 @@
         <ion-card-header>
           <ion-card>
             <ion-card-header class="ion-text-center">
-              <ion-avatar class="tutoImage"> <img src="assets/icon/favicon.png" /> </ion-avatar>
+              <ion-avatar class="startImage"> <img src="assets/icon/favicon.png" /> </ion-avatar>
               <ion-card-title class="ion-text-center"><h2>Registra tus gastos, también son importantes</h2></ion-card-title>
             </ion-card-header>
             <ion-card-content class="ion-text-center">
@@ -101,7 +95,7 @@
         <ion-card-header>
           <ion-card>
             <ion-card-header class="ion-text-center">
-              <ion-avatar class="tutoImage"> <img src="assets/icon/favicon.png" /> </ion-avatar>
+              <ion-avatar class="startImage"> <img src="assets/icon/favicon.png" /> </ion-avatar>
               <ion-card-title class="ion-text-center"><h2>Manten tus registros a salvo</h2></ion-card-title>
             </ion-card-header>
             <ion-card-content class="ion-text-center">
@@ -130,7 +124,7 @@
         <ion-card-header>
           <ion-card>
             <ion-card-header class="ion-text-center">
-              <ion-avatar class="tutoImage"> <img src="assets/icon/favicon.png" /> </ion-avatar>
+              <ion-avatar class="startImage"> <img src="assets/icon/favicon.png" /> </ion-avatar>
               <ion-card-title class="ion-text-center"><h2>Olvidate de hacer cuentas</h2></ion-card-title>
             </ion-card-header>
             <ion-card-content class="ion-text-center">
@@ -158,37 +152,7 @@
         <ion-card-header>
           <ion-card>
             <ion-card-header class="ion-text-center">
-              <ion-avatar class="tutoImage"> <img src="assets/icon/favicon.png" /> </ion-avatar>
-              <ion-card-title class="ion-text-center"><h2>Haz tuya esta aplicación</h2></ion-card-title>
-            </ion-card-header>
-            <ion-card-content class="ion-text-center">
-              <h2>
-                Si es la primera vez que usará esta app se le pedirá
-                su nombre y el número de su unidad. Es totalmente seguro
-                y garantiza la confianza de sus viajeros
-              </h2>
-              <br>
-              <h2>Los datos ingresados se pueden cambiar más adelante en:</h2>
-              <br>
-              <ion-item>
-                <ion-icon slot="start" name="settings-outline"></ion-icon>
-                <ion-label> Ajustes.</ion-label>
-              </ion-item>
-            </ion-card-content>
-          </ion-card>
-        </ion-card-header>
-        <ion-card-content>
-          Desliza para continuar
-        </ion-card-content>
-      </ion-card>
-    </ion-slide>
-
-    <ion-slide >
-      <ion-card style="height: 80%;">
-        <ion-card-header>
-          <ion-card>
-            <ion-card-header class="ion-text-center">
-              <ion-avatar class="tutoImage"> <img src="assets/icon/favicon.png" /> </ion-avatar>
+              <ion-avatar class="startImage"> <img src="assets/icon/favicon.png" /> </ion-avatar>
               <ion-card-title class="ion-text-center"><h2>¿Estas listo?</h2></ion-card-title>
             </ion-card-header>
             <ion-card-content class="ion-text-center">
@@ -220,20 +184,49 @@
         <ion-card-header>
           <ion-card>
             <ion-card-header class="ion-text-center">
-              <ion-avatar class="tutoImage"> <img src="assets/icon/favicon.png" /> </ion-avatar>
-              <ion-card-title class="ion-text-center"><h2>Tax</h2></ion-card-title>
+              <ion-avatar class="startImage"> <img src="assets/icon/favicon.png" /> </ion-avatar>
+              <ion-card-title class="ion-text-center"><h2>Haz tuya esta aplicación</h2></ion-card-title>
             </ion-card-header>
             <ion-card-content class="ion-text-center">
-              <h1>Sólo maneja</h1>
+              <h2>
+                Nos da gusto que trabajes con nosotros, a continuación ingrese los
+                datos que se le piden
+              </h2>
               <br>
-              <h2>Desarrollada por:</h2>
+              <h2>
+                Los datos ingresados se pueden cambiar más adelante en:
+                <ion-icon slot="start" name="settings-outline"></ion-icon>
+                 Ajustes
+              </h2>
+              <br>
             </ion-card-content>
           </ion-card>
         </ion-card-header>
         <ion-card-content>
-          <h2>Luis Alfonso Gonzalez</h2>
-          <h2>Derechos reservados</h2>
-          <h3>Acceso anticipado</h3>
+          <form #formulario="ngForm" (ngSubmit)="onSubmitTemplate()">
+            <ion-item>
+              <ion-icon slot="start" name="person-outline"></ion-icon>
+              <ion-input type="text"
+                        placeholder="Ingresa tu nombre"
+                        name="nombre"
+                        [(ngModel)]="newUser.nombreModal"
+                        required>
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-icon slot="start" name="car-outline"></ion-icon>
+              <ion-input type="number"
+                        placeholder="Ingresa el número de tu unidad"
+                        name="unidad"
+                        [(ngModel)]="newUser.unidadModal"
+                        required>
+              </ion-input>
+            </ion-item>
+          </form>
+          <br>
+          <ion-button expand="block" shape="round" color="medium" (click)="salir()" [disabled]="formulario.invalid">
+            Empezar
+          </ion-button>
         </ion-card-content>
       </ion-card>
     </ion-slide>

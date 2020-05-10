@@ -7,14 +7,19 @@ import { IonicModule } from '@ionic/angular';
 import { InicioPageRoutingModule } from './inicio-routing.module';
 
 import { InicioPage } from './inicio.page';
+import { StartAppPage } from '../start-app/start-app.page';
+import { StartAppPageModule } from '../start-app/start-app.module';
 
 @NgModule({
-  entryComponents: [],
+  entryComponents: [
+    StartAppPage
+  ],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    InicioPageRoutingModule
+    InicioPageRoutingModule,
+    StartAppPageModule
   ],
   declarations: [InicioPage]
 })

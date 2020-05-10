@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, ToastController, ModalController } from '@ionic/angular';
+import { StartAppPage } from '../start-app/start-app.page';
 
 @Component({
   selector: 'app-inicio',
@@ -36,10 +37,13 @@ export class InicioPage implements OnInit {
 
   constructor( private alertCtrl: AlertController,
               private router: Router,
-              private toastCtrl: ToastController) {}
+              private toastCtrl: ToastController,
+              private modalCtrl: ModalController ) {}
 
   ngOnInit() {
-    console.log('Ingreso a la pantalla Inicio');
+    this.obtenerDatosUsuarioFirstTime();
+  }
+  ionViewWillEnter(){
     this.obtenerDatosUsuario();
     this.obtenerDatosRegistro();
   }
@@ -299,10 +303,7 @@ export class InicioPage implements OnInit {
   }
 
   obtenerDatosUsuario(){
-    if (!localStorage.getItem("nombre") || !localStorage.getItem("unidad")) {
-      this.userData();
-    }
-    else{
+    if (localStorage.getItem("nombre") || localStorage.getItem("unidad")) {
       this.nombre = JSON.parse(localStorage.getItem("nombre"));
       this.unidad = JSON.parse(localStorage.getItem("unidad"));
     }
@@ -312,6 +313,32 @@ export class InicioPage implements OnInit {
       let dataArray = JSON.parse(localStorage.getItem("data"));
       this.precio = dataArray;
    }
+  }
+  obtenerDatosUsuarioFirstTime(){
+    if (!localStorage.getItem("nombre") || !localStorage.getItem("unidad")) {
+      this.inicioApp();
+    }
+    else{
+      this.nombre = JSON.parse(localStorage.getItem("nombre"));
+      this.unidad = JSON.parse(localStorage.getItem("unidad"));
+    }
+  }
+
+  async inicioApp(){
+    const modal = await this.modalCtrl.create({
+      component: StartAppPage,
+      componentProps: {
+        nombre: '',
+        unidad: ''
+      }
+    });
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+    console.log(data);
+    localStorage.setItem("nombre", JSON.stringify(data.nombre));
+    localStorage.setItem("unidad", JSON.stringify(data.unidad.toString()));
+    this.nombre = JSON.parse(localStorage.getItem("nombre"));
+    this.unidad = JSON.parse(localStorage.getItem("unidad"));
   }
 
 }
