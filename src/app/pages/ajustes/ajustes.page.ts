@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, ToastController, ModalController } from '@ionic/angular';
+import { EstadisticasPage } from '../estadisticas/estadisticas.page';
 
 @Component({
   selector: 'app-ajustes',
@@ -38,7 +39,8 @@ export class AjustesPage implements OnInit {
   unidad: string = JSON.parse(localStorage.getItem("unidad"));
 
   constructor( private alertCtrl: AlertController,
-              private toastCtrl: ToastController) { }
+              private toastCtrl: ToastController,
+              private modalCtrl: ModalController) { }
 
   ngOnInit() {
     console.log('ingreso a la pantalla Ajustes');
@@ -55,7 +57,7 @@ export class AjustesPage implements OnInit {
       this.estadisticas();
     }
     if (item.id === '4') {
-      this.estadisticas();
+      this.contacto();
     }
   }
 
@@ -120,11 +122,31 @@ export class AjustesPage implements OnInit {
       this.changeFailed();
     }
   }
-  estadisticas(){
-    console.log('Evento Estadisticas funciona');
+
+  async estadisticas(){
+   const modal = await this.modalCtrl.create({
+     component: EstadisticasPage
+   });
+   await modal.present();
   }
-  contacto(){
+
+  async contacto(){
     console.log('Evento Contacto funciona');
+    const alert = await this.alertCtrl.create({
+      header: 'Elige la manera que más te guste',
+      message: '<ion-item lines="none" href="www.google.com"><ion-icon slot="start" name="logo-facebook"></ion-icon>'
+                +'<ion-label>Facebook</ion-label></ion-item><ion-item lines="none" href="www.google.com">'
+                +'<ion-icon slot="start" name="mail"></ion-icon><ion-label>'
+                +'Email.</ion-label></ion-item>',
+      buttons: [{
+        text: 'Cerrar',
+        handler: () => {
+          console.log('Se cierra contacto');
+        }
+      }],
+      mode: 'ios'
+    });
+    await alert.present();
   }
 
   async changeSuccess() {
