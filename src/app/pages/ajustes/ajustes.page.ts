@@ -14,25 +14,29 @@ export class AjustesPage implements OnInit {
       id: '1',
       icon: 'person',
       titulo: 'Nombre',
-      subtitulo: 'Cambiar nombre de usuario'
+      subtitulo: 'Cambiar nombre de usuario',
+      disabled: false
     },
     {
       id: '2',
       icon: 'car',
       titulo: 'Número de unidad',
-      subtitulo: 'Cambiar número de la unidad que maneja'
+      subtitulo: 'Cambiar número de la unidad que maneja',
+      disabled: false
     },
     {
       id: '3',
       icon: 'analytics',
       titulo: 'Estadísticas generales',
-      subtitulo: 'Registro completo del uso de la aplicación'
+      subtitulo: 'Registro completo del uso de la aplicación',
+      disabled: false
     },
     {
       id: '4',
       icon: 'bug',
       titulo: 'Contacta al desarrollador',
-      subtitulo: 'Dudas, fallos o comentarios'
+      subtitulo: 'Dudas, fallos o comentarios',
+      disabled: true
     }
   ];
   nombre: string = JSON.parse(localStorage.getItem("nombre"));
@@ -163,6 +167,16 @@ export class AjustesPage implements OnInit {
     const toast = await this.toastCtrl.create({
       message: 'No se puede dejar vacío el campo, por favor, ingrese un dato',
       duration: 2000,
+      color: 'medium',
+      mode: 'ios'
+    });
+    toast.present();
+  }
+
+  async changeImage(){
+    const toast = await this.toastCtrl.create({
+      message: 'Por el momento no está disponible hasta la versión final',
+      duration: 3000,
       color: 'medium',
       mode: 'ios'
     });

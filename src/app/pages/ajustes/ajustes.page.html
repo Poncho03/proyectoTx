@@ -11,7 +11,7 @@
 
   <ion-card>
     <ion-card-header class="ion-text-center">
-      <ion-avatar class="userImage"> <img src="assets/avatarlogo.jpg" /> </ion-avatar>
+      <ion-avatar class="userImage" (click)="changeImage()"> <img src="assets/avatarlogo.jpg" /> </ion-avatar>
       <ion-card-title class="ion-text-center ion-text-capitalize"><h2>{{nombre}}</h2></ion-card-title>
     </ion-card-header>
     <ion-card-content class="ion-text-center">
@@ -21,7 +21,7 @@
   </ion-card>
 
   <ion-list>
-    <ion-item *ngFor="let i of ajustes" mode="md" (click)="onClick(i)" detail>
+    <ion-item *ngFor="let i of ajustes" mode="md" (click)="onClick(i)" disabled="{{i.disabled}}" detail>
       <ion-icon size="large" slot="start" name="{{i.icon}}"></ion-icon>
       <ion-text>
         <h5>{{i.titulo}}</h5>
