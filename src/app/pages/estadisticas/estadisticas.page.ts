@@ -11,18 +11,27 @@ export class EstadisticasPage implements OnInit {
   constructor( private modalCtrl: ModalController) { }
 
   data: any[] = [];
-  tipo;
-  tiempo;
-  money;
+  esta = [
+    {
+      titulo: 'No. de viajes realizados',
+      data: localStorage.getItem("numVia")
+    },
+    {
+      titulo: 'Ganancias totales',
+      data: '$'+localStorage.getItem("ganTot")
+    },
+    {
+      titulo: 'Gastos totales',
+      data: '$'+localStorage.getItem("gasTot")
+    },
+    {
+      titulo: 'Fecha de inicio',
+      data: localStorage.getItem("fechaInicio")
+    }
+  ]
 
 
   ngOnInit() {
-    this.data = JSON.parse(localStorage.getItem("data"));
-    for (let i = 0; i < this.data.length; i++) {
-      this.tipo = this.data[i].tipo;
-      this.tiempo = this.data[i].tiempo;
-      this.money = this.data[i].money;
-    }
   }
 
   cerrarModal(){

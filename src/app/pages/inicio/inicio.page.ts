@@ -20,7 +20,8 @@ export class InicioPage implements OnInit {
   public _segundos: string = '00';
   isRun = false;
   refreshColor = 'light';
-  //Variables que guardan el tiempo
+
+  //Variable que guarda el tiempo
   time: string = '';
 
   //Variables de la interfaz
@@ -35,6 +36,12 @@ export class InicioPage implements OnInit {
   nombre: string;
   unidad: string;
 
+  //Variables de estadísticas
+  fechaInicio: string = '';
+  ganTot: number = 0;
+  gasTot: number = 0;
+  numVia: number = 0;
+
   constructor( private alertCtrl: AlertController,
               private router: Router,
               private toastCtrl: ToastController,
@@ -42,6 +49,15 @@ export class InicioPage implements OnInit {
 
   ngOnInit() {
     this.obtenerDatosUsuarioFirstTime();
+    if (!localStorage.getItem("nombre") && !localStorage.getItem("unidad")) {
+      this.fechaInicio = new Date().getDay().toString()+
+        "/"+new Date().getMonth().toString()+
+        "/"+new Date().getFullYear().toString();
+      localStorage.setItem("fechaInicio", this.fechaInicio);
+      localStorage.setItem("ganTot", this.ganTot.toString());
+      localStorage.setItem("gasTot", this.gasTot.toString());
+      localStorage.setItem("numVia", this.numVia.toString());
+    }
   }
   ionViewWillEnter(){
     this.obtenerDatosUsuario();
@@ -157,6 +173,7 @@ export class InicioPage implements OnInit {
       this.messageSave();
       this.dataJSON = JSON.stringify(this.precio);
       localStorage.setItem("data", this.dataJSON);
+      this.gananciasEstadisticas(parseInt(result.data.values.costo, 10));
     }
     else{
       this.messageNull();
@@ -207,6 +224,7 @@ export class InicioPage implements OnInit {
       this.messageSave();
       this.dataJSON = JSON.stringify(this.precio);
       localStorage.setItem("data", this.dataJSON);
+      this.gastosEstadisticas(parseInt(result.data.values.gasto, 10));
     }
     else{
       this.messageNull();
@@ -339,6 +357,35 @@ export class InicioPage implements OnInit {
     localStorage.setItem("unidad", JSON.stringify(data.unidad.toString()));
     this.nombre = JSON.parse(localStorage.getItem("nombre"));
     this.unidad = JSON.parse(localStorage.getItem("unidad"));
+  }
+
+  gananciasEstadisticas( valor:number ){
+    if (localStorage.getItem("ganTot") === '0' && localStorage.getItem("numVia") === '0') {
+      this.ganTot += valor;
+      this.numVia += 1;
+      localStorage.setItem("ganTot", this.ganTot.toString());
+      localStorage.setItem("numVia", this.numVia.toString());
+    }
+    else {
+      this.ganTot = parseInt(localStorage.getItem("ganTot"));
+      this.numVia = parseInt(localStorage.getItem("numVia"));
+      this.ganTot += valor;
+      this.numVia += 1;
+      localStorage.setItem("ganTot", this.ganTot.toString());
+      localStorage.setItem("numVia", this.numVia.toString());
+    }
+  }
+
+  gastosEstadisticas( valor: number ){
+    if (localStorage.getItem("gasTot") === '0') {
+      this.gasTot += valor;
+      localStorage.setItem("gasTot", this.gasTot.toString());
+    }
+    else{
+      this.gasTot = parseInt(localStorage.getItem("gasTot"));
+      this.gasTot += valor;
+      localStorage.setItem("gasTot", this.gasTot.toString());
+    }
   }
 
 }
