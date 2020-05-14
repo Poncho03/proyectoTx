@@ -50,8 +50,8 @@ export class InicioPage implements OnInit {
   ngOnInit() {
     this.obtenerDatosUsuarioFirstTime();
     if (!localStorage.getItem("nombre") && !localStorage.getItem("unidad")) {
-      this.fechaInicio = new Date().getDay().toString()+
-        "/"+new Date().getMonth().toString()+
+      this.fechaInicio = new Date().getDate().toString()+
+        "/"+(new Date().getMonth() + 1).toString() +
         "/"+new Date().getFullYear().toString();
       localStorage.setItem("fechaInicio", this.fechaInicio);
       localStorage.setItem("ganTot", this.ganTot.toString());
@@ -348,7 +348,8 @@ export class InicioPage implements OnInit {
       componentProps: {
         nombre: '',
         unidad: ''
-      }
+      },
+      backdropDismiss: false
     });
     await modal.present();
     const { data } = await modal.onDidDismiss();

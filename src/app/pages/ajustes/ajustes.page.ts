@@ -129,7 +129,8 @@ export class AjustesPage implements OnInit {
 
   async estadisticas(){
    const modal = await this.modalCtrl.create({
-     component: EstadisticasPage
+     component: EstadisticasPage,
+     backdropDismiss: false
    });
    await modal.present();
   }
