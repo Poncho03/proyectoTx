@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title class="ion-text-capitalize"> registros </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="presentAlertConfirm()" disabled="{{boton}}">
+      <ion-button (click)="presentAlertConfirm()" [disabled]="boton">
         <ion-icon name="trash"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -32,7 +32,7 @@
     </ion-text>
   </ion-slide>
 
-  <ion-list *ngIf="data.length > 0">
+  <ion-list *ngIf="data.length != 0">
     <ion-item *ngFor="let item of data | filtro: tipo: 'tipo'">
       <ion-icon slot="start" name="{{item.icon}}"></ion-icon>
       <ion-label>$ {{item.money}}</ion-label>

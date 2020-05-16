@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
@@ -15,18 +14,13 @@ export class RegistrosPage implements OnInit {
   boton: boolean = true;
   color: string;
 
-  constructor(private activatedRoute: ActivatedRoute,
-      private alertCtrl: AlertController,
-      private toastCtrl: ToastController) {
-    this.activatedRoute.queryParams.subscribe( (d) => {
-      this.data = JSON.parse(d.value);
-      console.log(this.data);
-    } )
-  }
+  constructor( private alertCtrl: AlertController, private toastCtrl: ToastController) { }
 
   ngOnInit() {
     this.tipo = 'ingresos';
-    if(!localStorage.getItem("data")){
+    this.data = JSON.parse(localStorage.getItem("testData"));
+    console.log(this.data);
+    if(this.data.length === 0){
       this.boton = true;
     }
     else{
@@ -88,7 +82,7 @@ export class RegistrosPage implements OnInit {
   borrarData(){
     this.data = [];
     console.log(this.data);
-    localStorage.removeItem("data");
+    localStorage.setItem("testData", JSON.stringify(this.data));
     this.boton = true;
     this.neta = 0;
     this.color='';

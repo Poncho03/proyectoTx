@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController, ModalController } from '@ionic/angular';
 import { EstadisticasPage } from '../estadisticas/estadisticas.page';
+import { Plugins, CameraResultType, CameraSource } from '@capacitor/core'
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-ajustes',
@@ -30,24 +33,27 @@ export class AjustesPage implements OnInit {
       titulo: 'Estadísticas generales',
       subtitulo: 'Registro completo del uso de la aplicación',
       disabled: false
-    },
-    {
-      id: '4',
-      icon: 'bug',
-      titulo: 'Contacta al desarrollador',
-      subtitulo: 'Dudas, fallos o comentarios',
-      disabled: true
     }
   ];
   nombre: string = JSON.parse(localStorage.getItem("nombre"));
   unidad: string = JSON.parse(localStorage.getItem("unidad"));
 
+  foto: SafeResourceUrl;
+
   constructor( private alertCtrl: AlertController,
               private toastCtrl: ToastController,
-              private modalCtrl: ModalController) { }
+              private modalCtrl: ModalController,
+              private actionSheetCtrl: ActionSheetController,
+              private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     console.log('ingreso a la pantalla Ajustes');
+    if (!localStorage.getItem("userPhoto")) {
+      this.foto = 'assets/userNull.jpg'
+    }
+    else{
+      this.foto = JSON.parse(localStorage.getItem("userPhoto"));
+    }
   }
 
   onClick(item){
@@ -60,9 +66,56 @@ export class AjustesPage implements OnInit {
     if (item.id === '3') {
       this.estadisticas();
     }
-    if (item.id === '4') {
-      this.contacto();
-    }
+  }
+
+  async Opciones() {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Elige una opción',
+      buttons: [
+        {
+          text: 'Tomar foto',
+          icon: 'camera',
+          handler: () => {
+            console.log('Share clicked');
+            this.tomarFoto();
+          }
+        },
+        {
+          text: 'Eliminar foto',
+          icon: 'trash',
+          handler: () => {
+            console.log('Share clicked');
+            this.eliminarFoto();
+          }
+        },
+        {
+          text: 'Cancelar',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    await actionSheet.present();
+  }
+
+  async tomarFoto(){
+    const image = await Plugins.Camera.getPhoto({
+      quality: 100,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Camera
+    });
+    this.foto = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
+    console.log(image);
+    localStorage.setItem("userPhoto", JSON.stringify(image.dataUrl));
+  }
+
+  eliminarFoto(){
+    this.foto = 'assets/userNull.jpg';
+    localStorage.setItem("userPhoto", JSON.stringify(this.foto));
   }
 
   async cambiarNombre(){
@@ -135,7 +188,7 @@ export class AjustesPage implements OnInit {
    await modal.present();
   }
 
-  async contacto(){
+  /*async contacto(){
     console.log('Evento Contacto funciona');
     const alert = await this.alertCtrl.create({
       header: 'Elige la manera que más te guste',
@@ -152,7 +205,7 @@ export class AjustesPage implements OnInit {
       mode: 'ios'
     });
     await alert.present();
-  }
+  }*/
 
   async changeSuccess() {
     const toast = await this.toastCtrl.create({
@@ -168,16 +221,6 @@ export class AjustesPage implements OnInit {
     const toast = await this.toastCtrl.create({
       message: 'No se puede dejar vacío el campo, por favor, ingrese un dato',
       duration: 2000,
-      color: 'medium',
-      mode: 'ios'
-    });
-    toast.present();
-  }
-
-  async changeImage(){
-    const toast = await this.toastCtrl.create({
-      message: 'Por el momento no está disponible hasta la versión final',
-      duration: 3000,
       color: 'medium',
       mode: 'ios'
     });

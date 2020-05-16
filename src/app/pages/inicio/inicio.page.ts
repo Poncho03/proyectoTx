@@ -57,6 +57,7 @@ export class InicioPage implements OnInit {
       localStorage.setItem("ganTot", this.ganTot.toString());
       localStorage.setItem("gasTot", this.gasTot.toString());
       localStorage.setItem("numVia", this.numVia.toString());
+      localStorage.setItem("testData", JSON.stringify(this.precio));
     }
   }
   ionViewWillEnter(){
@@ -171,8 +172,7 @@ export class InicioPage implements OnInit {
       this.precio.push(dataIngreso);
       console.log(this.precio);
       this.messageSave();
-      this.dataJSON = JSON.stringify(this.precio);
-      localStorage.setItem("data", this.dataJSON);
+      localStorage.setItem("testData", JSON.stringify(this.precio));
       this.gananciasEstadisticas(parseInt(result.data.values.costo, 10));
     }
     else{
@@ -222,8 +222,7 @@ export class InicioPage implements OnInit {
       this.precio.push(dataIngreso);
       console.log(this.precio);
       this.messageSave();
-      this.dataJSON = JSON.stringify(this.precio);
-      localStorage.setItem("data", this.dataJSON);
+      localStorage.setItem("testData", JSON.stringify(this.precio));
       this.gastosEstadisticas(parseInt(result.data.values.gasto, 10));
     }
     else{
@@ -300,24 +299,6 @@ export class InicioPage implements OnInit {
       mode: 'ios'
     });
     toast.present();
-  }
-
-  Registros(){
-    if (!localStorage.getItem("data")) {
-      this.precio = [];
-      this.router.navigate(['/registros'],{
-        queryParams: {
-          value: JSON.stringify(this.precio)
-        }
-      });
-    }
-    else{
-      this.router.navigate(['/registros'],{
-        queryParams: {
-          value: JSON.stringify(this.precio)
-        }
-      });
-    }
   }
 
   obtenerDatosUsuario(){
