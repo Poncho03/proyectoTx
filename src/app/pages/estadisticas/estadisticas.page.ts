@@ -25,6 +25,10 @@ export class EstadisticasPage implements OnInit {
       data: '$'+localStorage.getItem("gasTot")
     },
     {
+      titulo: 'Viaje más largo',
+      data: localStorage.getItem("timeMax")
+    },
+    {
       titulo: 'Fecha de inicio',
       data: localStorage.getItem("fechaInicio")
     }

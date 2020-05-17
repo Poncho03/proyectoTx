@@ -41,6 +41,7 @@ export class InicioPage implements OnInit {
   ganTot: number = 0;
   gasTot: number = 0;
   numVia: number = 0;
+  tieMax: string = '00 : 00 : 00'
 
   constructor( private alertCtrl: AlertController,
               private router: Router,
@@ -58,7 +59,9 @@ export class InicioPage implements OnInit {
       localStorage.setItem("gasTot", this.gasTot.toString());
       localStorage.setItem("numVia", this.numVia.toString());
       localStorage.setItem("testData", JSON.stringify(this.precio));
+      localStorage.setItem("timeMax", this.tieMax);
     }
+    this.tieMax = localStorage.getItem("timeMax");
   }
   ionViewWillEnter(){
     this.obtenerDatosUsuario();
@@ -174,6 +177,7 @@ export class InicioPage implements OnInit {
       this.messageSave();
       localStorage.setItem("testData", JSON.stringify(this.precio));
       this.gananciasEstadisticas(parseInt(result.data.values.costo, 10));
+      this.tiempoEstadisticas(this.time, this.precio);
     }
     else{
       this.messageNull();
@@ -308,8 +312,8 @@ export class InicioPage implements OnInit {
     }
   }
   obtenerDatosRegistro(){
-    if (localStorage.getItem("data") != null) {
-      let dataArray = JSON.parse(localStorage.getItem("data"));
+    if (localStorage.getItem("testData") != null) {
+      let dataArray = JSON.parse(localStorage.getItem("testData"));
       this.precio = dataArray;
    }
   }
@@ -367,6 +371,21 @@ export class InicioPage implements OnInit {
       this.gasTot = parseInt(localStorage.getItem("gasTot"));
       this.gasTot += valor;
       localStorage.setItem("gasTot", this.gasTot.toString());
+    }
+  }
+
+  tiempoEstadisticas( time: string, array:any[] ){
+    if (localStorage.getItem("timeMax") === '00 : 00 : 00') {
+      this.tieMax = time;
+      localStorage.setItem("timeMax", this.tieMax);
+    }
+    else{
+      for (let i = 0; i < array.length; i++) {
+        if (array[i].tiempo > this.tieMax) {
+          this.tieMax = array[i].tiempo
+        }
+      }
+      localStorage.setItem("timeMax", this.tieMax);
     }
   }
 

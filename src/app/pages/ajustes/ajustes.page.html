@@ -12,12 +12,11 @@
   <ion-card>
     <ion-card-header class="ion-text-center">
       <ion-avatar class="userImage" (click)="Opciones()"> <img [src]="foto" /> </ion-avatar>
-      <ion-card-title class="ion-text-center ion-text-capitalize"><h2>{{nombre}}</h2></ion-card-title>
-    </ion-card-header>
-    <ion-card-content class="ion-text-center">
+      <ion-card-title class="ion-text-center ion-text-capitalize"><h1>{{nombre}}</h1></ion-card-title>
       <h5>Unidad: {{unidad}}</h5>
-      <h5>Orizaba, Ver.</h5>
-    </ion-card-content>
+      <h5 style="margin-top: unset;">Orizaba, Ver.</h5>
+    </ion-card-header>
+    
   </ion-card>
 
   <ion-list>
@@ -44,7 +43,7 @@
 
 </ion-content>
 
-<ion-footer class="ion-no-border">
+<ion-footer>
   <ion-toolbar>
     <ion-title color="medium" class="ion-text-center">tax</ion-title>
   </ion-toolbar>
