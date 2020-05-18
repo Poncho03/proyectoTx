@@ -81,6 +81,14 @@ export class AjustesPage implements OnInit {
           }
         },
         {
+          text: 'Seleccionar foto',
+          icon: 'image',
+          handler: () => {
+            console.log('Share clicked');
+            this.galeria();
+          }
+        },
+        {
           text: 'Eliminar foto',
           icon: 'trash',
           handler: () => {
@@ -106,7 +114,20 @@ export class AjustesPage implements OnInit {
       quality: 100,
       allowEditing: false,
       resultType: CameraResultType.DataUrl,
-      source: CameraSource.Camera
+      source: CameraSource.Camera,
+      saveToGallery: true
+    });
+    this.foto = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
+    console.log(image);
+    localStorage.setItem("userPhoto", JSON.stringify(image.dataUrl));
+  }
+
+  async galeria(){
+    const image = await Plugins.Camera.getPhoto({
+      quality: 100,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Photos
     });
     this.foto = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
     console.log(image);
