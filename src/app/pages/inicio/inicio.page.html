@@ -1,14 +1,13 @@
-<ion-content>
-
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button disabled="{{disable}}" routerLink="/ajustes">
-        <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+        <ion-icon slot="icon-only" name="settings-outline" color="medium"></ion-icon>
       </ion-button>
     </ion-buttons>
-
+  
     <ion-title class="ion-text-capitalize">Hola, {{nombre}}!</ion-title>
-
+  
     <ion-buttons slot="end">
       <ion-chip mode="ios" color="medium">
         <ion-icon name="car-outline"></ion-icon>
@@ -16,6 +15,10 @@
       </ion-chip>
     </ion-buttons>
   </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
 
   <ion-text color="medium" class="ion-text-center">
     <h2 style="margin-top: 10%;"><strong>{{mensaje}}</strong></h2>

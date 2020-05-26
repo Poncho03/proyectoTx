@@ -13,8 +13,10 @@ export class StartAppPage implements OnInit {
     nombreModal: '',
     unidadModal: ''
   }
+  switch: boolean = JSON.parse(localStorage.getItem("theme"));
 
-  constructor( private modalCtrl: ModalController ) { }
+  constructor( private modalCtrl: ModalController ) {
+  }
 
   ngOnInit() {
   }
@@ -28,6 +30,17 @@ export class StartAppPage implements OnInit {
 
   onSubmitTemplate(){
     console.log('form');
+  }
+
+  changeTheme(e){
+    this.switch = e.detail.checked;
+    localStorage.setItem("theme", JSON.stringify(this.switch));
+    if (this.switch === true) {
+      document.body.setAttribute('class', 'dark');
+    }
+    else{
+      document.body.removeAttribute('class');
+    }
   }
 
 }

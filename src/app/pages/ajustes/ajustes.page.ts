@@ -40,6 +40,8 @@ export class AjustesPage implements OnInit {
 
   foto: SafeResourceUrl;
 
+  switch: boolean;
+
   constructor( private alertCtrl: AlertController,
               private toastCtrl: ToastController,
               private modalCtrl: ModalController,
@@ -54,6 +56,7 @@ export class AjustesPage implements OnInit {
     else{
       this.foto = JSON.parse(localStorage.getItem("userPhoto"));
     }
+    this.switch = JSON.parse(localStorage.getItem("theme"));
   }
 
   onClick(item){
@@ -248,4 +251,14 @@ export class AjustesPage implements OnInit {
     toast.present();
   }
 
+  changeTheme(e){
+    this.switch = e.detail.checked;
+    localStorage.setItem("theme", JSON.stringify(this.switch));
+    if (this.switch === true) {
+      document.body.setAttribute('class', 'dark');
+    }
+    else{
+      document.body.removeAttribute('class');
+    }
+  }
 }

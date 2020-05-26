@@ -60,8 +60,11 @@ export class InicioPage implements OnInit {
       localStorage.setItem("numVia", this.numVia.toString());
       localStorage.setItem("testData", JSON.stringify(this.precio));
       localStorage.setItem("timeMax", this.tieMax);
+      localStorage.setItem("theme", 'false');
     }
     this.tieMax = localStorage.getItem("timeMax");
+    this.checkTheme();
+
   }
   ionViewWillEnter(){
     this.obtenerDatosUsuario();
@@ -389,6 +392,14 @@ export class InicioPage implements OnInit {
     }
   }
 
+  checkTheme(){
+    if (JSON.parse(localStorage.getItem("theme")) === true) {
+      document.body.setAttribute('class', 'dark');
+    }
+    else{
+      document.body.removeAttribute('class');
+    }
+  }
 }
 
 interface Datos {

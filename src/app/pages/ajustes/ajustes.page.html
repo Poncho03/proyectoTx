@@ -20,7 +20,7 @@
   </ion-card>
 
   <ion-list>
-    <ion-item *ngFor="let i of ajustes" mode="md" (click)="onClick(i)" disabled="{{i.disabled}}" detail>
+    <ion-item *ngFor="let i of ajustes" (click)="onClick(i)" disabled="{{i.disabled}}" detail>
       <ion-icon size="large" slot="start" name="{{i.icon}}"></ion-icon>
       <ion-text>
         <h5>{{i.titulo}}</h5>
@@ -38,6 +38,12 @@
           <h6>Conoce cómo funciona</h6>
         </ion-text>
       </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon slot="start" name="color-fill"></ion-icon>
+      <ion-label>Tema oscuro</ion-label>
+      <ion-toggle (ionChange)="changeTheme($event)" slot="end" color="medium" [(ngModel)]="switch"></ion-toggle>
     </ion-item>
   </ion-list>
 

@@ -1,12 +1,12 @@
 <ion-content>
 
   <ion-fab vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button color="medium" mode="ios" routerLink="/ajustes">
+    <ion-fab-button color="medium" mode="ios" routerLink="/">
       <ion-icon name="close"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <ion-slides mode="ios" pager="ios" style="height: 100%;">
+  <ion-slides pager="ios" style="height: 100%;">
 
     <ion-slide>
       <ion-card>
@@ -185,6 +185,33 @@
             <ion-item>
               <ion-icon slot="start" name="analytics"></ion-icon>
               <ion-label>Estadísticas</ion-label>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+        <ion-card-content>
+          Desliza para continuar
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card>
+        <ion-card>
+          <ion-card-header class="ion-text-center" style="height: 40%;">
+            <ion-avatar class="tutoImage"> <img src="assets/icon/favicon.png" /> </ion-avatar>
+            <ion-card-title class="ion-text-center"><h2>Tema oscuro</h2></ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="ion-text-center">
+            <h2>
+              Sabemos lo importante que es la salud visual, es por eso que
+              añadimos un tema oscuro para proteger tu visión, además de
+              que ahorrarás batería
+            </h2>
+            <h2><strong>Esto se encuentra en Ajustes > Tema oscuro</strong></h2>
+            <br>
+            <ion-item>
+              <ion-icon slot="start" name="color-fill-outline"></ion-icon>
+              <ion-label>Tema oscuro</ion-label>
             </ion-item>
           </ion-card-content>
         </ion-card>

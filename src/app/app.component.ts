@@ -8,9 +8,10 @@ import { Plugins, StatusBarStyle } from '@capacitor/core'
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  constructor(
-    private platform: Platform
-  ) {
+
+  isStatusBarLight = true
+
+  constructor( private platform: Platform ) {
     this.initializeApp();
   }
 
@@ -18,10 +19,10 @@ export class AppComponent {
     const { SplashScreen, StatusBar } = Plugins;
     try{
       await SplashScreen.hide();
-      await StatusBar.setStyle({ style: StatusBarStyle.Light });
-      if (this.platform.is('android')) {
-        StatusBar.setBackgroundColor({ color: '#CDCDCD' });
-      }
+      await StatusBar.setStyle({
+        style: this.isStatusBarLight ? StatusBarStyle.Dark : StatusBarStyle.Light
+      });
+      this.isStatusBarLight = !this.isStatusBarLight;
     }
     catch(err){
       console.log('This is normal in a browser', err);

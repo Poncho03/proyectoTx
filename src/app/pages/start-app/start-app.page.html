@@ -1,6 +1,6 @@
 <ion-content>
 
-  <ion-slides mode="ios" pager="ios" expand="full" style="height: 100%;">
+  <ion-slides pager="ios" expand="full" style="height: 100%;">
 
     <ion-slide>
       <ion-card>
@@ -153,6 +153,32 @@
               <ion-icon slot="start" name="analytics"></ion-icon>
               <ion-label>Estadísticas</ion-label>
             </ion-item>
+          </ion-card-content>
+        </ion-card>
+        <ion-card-content>
+          Desliza para continuar
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card>
+        <ion-card>
+          <ion-card-header class="ion-text-center" style="height: 40%;">
+            <ion-avatar class="startImage"> <img src="assets/icon/favicon.png" /> </ion-avatar>
+            <ion-card-title class="ion-text-center"><h2>Tema oscuro</h2></ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="ion-text-center">
+            <h2>
+              Sabemos lo importante que es la salud visual, es por eso que
+              añadimos un tema oscuro para proteger tu visión, además de
+              que ahorrarás batería
+            </h2>
+            <h2><strong>Elige tu tema</strong></h2>
+            <br>
+            <ion-icon name="sunny" style="font-size: 30px; margin-right: 3%;"></ion-icon>
+            <ion-toggle (ionChange)="changeTheme($event)" slot="end" color="medium" [(ngModel)]="switch"></ion-toggle>
+            <ion-icon name="moon" style="font-size: 30px; margin-left: 3%;"></ion-icon>
           </ion-card-content>
         </ion-card>
         <ion-card-content>
