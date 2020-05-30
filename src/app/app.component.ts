@@ -23,6 +23,9 @@ export class AppComponent {
         style: this.isStatusBarLight ? StatusBarStyle.Dark : StatusBarStyle.Light
       });
       this.isStatusBarLight = !this.isStatusBarLight;
+      await StatusBar.setBackgroundColor({
+        color: "#960005"
+      })
     }
     catch(err){
       console.log('This is normal in a browser', err);

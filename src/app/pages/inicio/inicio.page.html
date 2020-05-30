@@ -1,17 +1,17 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
+  <ion-toolbar color="tax">
     <ion-buttons slot="start">
       <ion-button disabled="{{disable}}" routerLink="/ajustes">
-        <ion-icon slot="icon-only" name="settings-outline" color="medium"></ion-icon>
+        <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   
-    <ion-title class="ion-text-capitalize">Hola, {{nombre}}!</ion-title>
+    <ion-title class="ion-text-capitalize">Hola {{nombre}}</ion-title>
   
     <ion-buttons slot="end">
-      <ion-chip mode="ios" color="medium">
-        <ion-icon name="car-outline"></ion-icon>
-        <ion-label>{{unidad}}</ion-label>
+      <ion-chip>
+        <ion-icon name="car-outline" style="color: white;"></ion-icon>
+        <ion-label style="color: white;">{{unidad}}</ion-label>
       </ion-chip>
     </ion-buttons>
   </ion-toolbar>
@@ -54,7 +54,7 @@
       </ion-button>
     </div>
     <div style="float: left; width: 20%;">
-      <ion-button expand="block" shape="round" color="data" disabled="{{disable}}" routerLink="/registros">
+      <ion-button expand="block" shape="round" color="warning" disabled="{{disable}}" routerLink="/registros">
         <ion-icon name="reorder-four"></ion-icon>
       </ion-button>
     </div>
