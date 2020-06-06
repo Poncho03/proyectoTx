@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ToastController, ModalController } from '@ionic/angular';
 import { StartAppPage } from '../start-app/start-app.page';
+import { Plugins } from '@capacitor/core'
+
+const { CapacitorKeepScreenOn } = Plugins
 
 @Component({
   selector: 'app-inicio',
@@ -79,6 +82,7 @@ export class InicioPage implements OnInit {
       this.estado = true;
       this.disable = true;
       this.start();
+      CapacitorKeepScreenOn.enable()
     }
     else{
       console.log('Servicio inactivo');
@@ -88,6 +92,7 @@ export class InicioPage implements OnInit {
       this.disable = false;
       this.pause();
       this.stop();
+      CapacitorKeepScreenOn.disable()
       this.agregarIngreso();
     }
   }
