@@ -115,7 +115,7 @@ export class AjustesPage implements OnInit {
   async tomarFoto(){
     const image = await Plugins.Camera.getPhoto({
       quality: 100,
-      allowEditing: false,
+      allowEditing: true,
       resultType: CameraResultType.DataUrl,
       source: CameraSource.Camera,
       saveToGallery: true
@@ -128,7 +128,7 @@ export class AjustesPage implements OnInit {
   async galeria(){
     const image = await Plugins.Camera.getPhoto({
       quality: 100,
-      allowEditing: false,
+      allowEditing: true,
       resultType: CameraResultType.DataUrl,
       source: CameraSource.Photos
     });

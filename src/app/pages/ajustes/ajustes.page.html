@@ -22,22 +22,18 @@
   <ion-list>
     <ion-item *ngFor="let i of ajustes" (click)="onClick(i)" disabled="{{i.disabled}}" detail>
       <ion-icon size="large" slot="start" name="{{i.icon}}"></ion-icon>
-      <ion-text>
-        <h5>{{i.titulo}}</h5>
-        <ion-text color="medium">
-          <h6>{{i.subtitulo}}</h6>
-        </ion-text>
-      </ion-text>
+      <ion-label>
+        <h2>{{i.titulo}}</h2>
+        <p>{{i.subtitulo}}</p>
+      </ion-label>
     </ion-item>
 
     <ion-item routerLink="/tutorial" detail>
       <ion-icon size="large" slot="start" name="help"></ion-icon>
-      <ion-text>
-        <h5>Tutorial</h5>
-        <ion-text color="medium">
-          <h6>Conoce cómo funciona</h6>
-        </ion-text>
-      </ion-text>
+      <ion-label>
+        <h2>Tutorial</h2>
+        <p>Conoce cómo funciona</p>
+      </ion-label>
     </ion-item>
 
     <ion-item>
