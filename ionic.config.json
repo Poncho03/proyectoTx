@@ -1,7 +1,6 @@
 {
   "name": "tax",
   "integrations": {
-    "cordova": {},
     "capacitor": {}
   },
   "type": "angular"

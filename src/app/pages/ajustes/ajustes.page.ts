@@ -179,7 +179,7 @@ export class AjustesPage implements OnInit {
       message: '<br><h4 class="ion-text-center">Ingrese el nuevo número de su unidad</h4>',
       inputs: [{
         name: 'unity',
-        type: 'text',
+        type: 'number',
         value: this.unidad
       }],
       buttons: [

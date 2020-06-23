@@ -8,6 +8,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PipesModule } from './pipes/pipes.module';
 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore'
+
 @NgModule({
   declarations: [
     AppComponent
@@ -17,7 +21,9 @@ import { PipesModule } from './pipes/pipes.module';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    PipesModule
+    PipesModule,
+    AngularFireModule.initializeApp(environment.FIREBASEConfig),
+    AngularFirestoreModule
   ],
   providers: [
     {
