@@ -41,8 +41,23 @@
     <h1>{{_minutos}} : {{_segundos}} : {{_centesimas}}</h1>
   </ion-text>
 
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="warning" disabled="{{disable}}">
+      <ion-icon name="arrow-back-circle-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button routerLink="/registros" color="primary">
+        <ion-icon name="list-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="agregarEgreso()" color="danger">
+        <ion-icon name="cash-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
 </ion-content>
 
+<!--
 <ion-footer class="ion-no-border">
   <ion-toolbar>
     <ion-text color="medium">
@@ -60,4 +75,6 @@
     </div>
   </ion-toolbar>
 </ion-footer>
+
+-->
 

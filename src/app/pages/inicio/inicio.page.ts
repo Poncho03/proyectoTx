@@ -167,8 +167,7 @@ export class InicioPage implements OnInit {
           }
         }
       ],
-      backdropDismiss: false,
-      mode: 'ios'
+      backdropDismiss: false
     });
 
     await alert.present();
@@ -219,8 +218,7 @@ export class InicioPage implements OnInit {
           }
         }
       ],
-      backdropDismiss: false,
-      mode: 'ios'
+      backdropDismiss: false
     });
     await alert.present();
     let result = await alert.onDidDismiss();
@@ -242,46 +240,11 @@ export class InicioPage implements OnInit {
     }
   }
 
-  async userData() {
-    const alert = await this.alertCtrl.create({
-      header: 'Bienvenido a Tax',
-      message: '<h4>Por favor, llene los campos para personalizar su servicio</h4>',
-      inputs: [ 
-        { name: 'nombre', type: 'text', placeholder: 'Nombre' },
-        { name: 'unidad', type: 'number', placeholder: 'Número de su unidad' },
-      ],
-      buttons: [
-        { text: 'Ok', cssClass: 'primary',
-          handler: () => {
-            console.log('Datos añadidos');
-          }
-        }
-      ],
-      mode: 'ios',
-      backdropDismiss: false
-      
-    });
-    await alert.present();
-    let result = await alert.onDidDismiss();
-    if(result.data.values.nombre != "" && result.data.values.unidad != ""){
-      localStorage.setItem("nombre", JSON.stringify(result.data.values.nombre));
-      localStorage.setItem("unidad", JSON.stringify(result.data.values.unidad));
-      this.nombre = JSON.parse(localStorage.getItem("nombre"));
-      this.unidad = JSON.parse(localStorage.getItem("unidad"));
-      this.messageDataSuccess();
-    }
-    else{
-      this.messageDataNull();
-      this.userData();
-    }
-  }
-
   async messageNull() {
     const alert = await this.alertCtrl.create({
       header: 'Operación cancelada',
       message: '<h4 class="ion-text-center">No se agregó un valor</h4',
-      buttons: ['Ok'],
-      mode: 'ios'
+      buttons: ['Ok']
     });
     
     await alert.present();
@@ -290,16 +253,7 @@ export class InicioPage implements OnInit {
     const alert = await this.alertCtrl.create({
       header: 'Buen trabajo, ¡siga así!',
       message: '<h4 class="ion-text-center">Se guardó la cantidad</h4',
-      buttons: ['Ok'],
-      mode: 'ios'
-    });
-    await alert.present();
-  }
-  async messageDataSuccess() {
-    const alert = await this.alertCtrl.create({
-      header: 'Datos guardados',
-      message: `<h4 class=\\"ion-text-center ion-text-capitalize\\">Bienvenido ${this.nombre}</h4>`,
-      mode: 'ios'
+      buttons: ['Ok']
     });
     await alert.present();
   }

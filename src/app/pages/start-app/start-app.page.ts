@@ -19,7 +19,6 @@ export class StartAppPage implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-    private loadingCtrl: LoadingController,
     private firestore: AngularFirestore,
     private toastCtrl: ToastController
     ) {
@@ -53,18 +52,12 @@ export class StartAppPage implements OnInit {
   }
 
   async crearUsuario(nu: User){
-    let loader = this.loadingCtrl.create({
-      message: 'Por favor espere...'
-    });
-    (await loader).present();
-
     try{
       await this.firestore.collection("usuarios").add(nu);
     }
     catch(e){
       this.showToast("Error: "+e);
     }
-    (await loader).dismiss();
   }
 
   showToast(message: string){
