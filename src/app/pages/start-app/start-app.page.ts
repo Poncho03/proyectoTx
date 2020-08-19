@@ -60,7 +60,6 @@ export class StartAppPage implements OnInit {
 
     try{
       await this.firestore.collection("usuarios").add(nu);
-      this.showToast("Usuario agregado")
     }
     catch(e){
       this.showToast("Error: "+e);
@@ -79,6 +78,7 @@ export class StartAppPage implements OnInit {
     const info = await Device.getInfo();
     this.newUser.osversion = info.osVersion;
     this.newUser.modelo = info.model;
+    this.newUser.plataforma = info.platform;
   }
 
 }

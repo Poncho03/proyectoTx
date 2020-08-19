@@ -3,5 +3,5 @@ export interface User {
     unidad: string;
     osversion: string;
     modelo: string;
-    
+    plataforma: string;
 }

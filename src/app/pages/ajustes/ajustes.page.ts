@@ -4,6 +4,7 @@ import { EstadisticasPage } from '../estadisticas/estadisticas.page';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core'
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActionSheetController } from '@ionic/angular';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-ajustes',
@@ -42,11 +43,14 @@ export class AjustesPage implements OnInit {
 
   switch: boolean;
 
-  constructor( private alertCtrl: AlertController,
-              private toastCtrl: ToastController,
-              private modalCtrl: ModalController,
-              private actionSheetCtrl: ActionSheetController,
-              private sanitizer: DomSanitizer) { }
+  constructor(
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController,
+    private modalCtrl: ModalController,
+    private actionSheetCtrl: ActionSheetController,
+    private sanitizer: DomSanitizer,
+    private firestore: AngularFirestore
+  ) { }
 
   ngOnInit() {
     console.log('ingreso a la pantalla Ajustes');
