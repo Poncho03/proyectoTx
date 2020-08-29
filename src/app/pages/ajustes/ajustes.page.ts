@@ -48,8 +48,7 @@ export class AjustesPage implements OnInit {
     private toastCtrl: ToastController,
     private modalCtrl: ModalController,
     private actionSheetCtrl: ActionSheetController,
-    private sanitizer: DomSanitizer,
-    private firestore: AngularFirestore
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -162,8 +161,7 @@ export class AjustesPage implements OnInit {
             console.log('Nombre guardado');
           }
         }
-      ],
-      mode: 'ios'
+      ]
     });
     await alert.present();
     let result = await alert.onDidDismiss();
@@ -193,8 +191,7 @@ export class AjustesPage implements OnInit {
             console.log('Unidad guardada');
           }
         }
-      ],
-      mode: 'ios'
+      ]
     });
     await alert.present();
     let result = await alert.onDidDismiss();

@@ -72,8 +72,7 @@ export class RegistrosPage implements OnInit {
           }
         }
       ],
-      backdropDismiss: false,
-      mode: 'ios'
+      backdropDismiss: false
     });
 
     await alert.present();
