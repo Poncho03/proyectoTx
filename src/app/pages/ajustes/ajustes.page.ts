@@ -4,7 +4,6 @@ import { EstadisticasPage } from '../estadisticas/estadisticas.page';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core'
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActionSheetController } from '@ionic/angular';
-import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-ajustes',
